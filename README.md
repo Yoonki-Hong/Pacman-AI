@@ -12,22 +12,15 @@ Python 2.7
 ## Getting Started
 
 Files you'll edit:
-* valueIterationAgents.py
-A value iteration agent for solving known MDPs.
-* qlearningAgents.py
-Q-learning agents for Gridworld and Pacman.
+* valueIterationAgents.py : A value iteration agent for solving known MDPs.
+* qlearningAgents.py : Q-learning agents for Gridworld and Pacman.
 
 Files you should read but NOT edit:
-* mdp.py
-Defines methods on general MDPs.
-* learningAgents.py
-Defines the base classes ValueEstimationAgent and QLearningAgent, which your agents will extend.
-* util.py
-Utilities, including util.Counter, which is particularly useful for Q-learners.
-* gridworld.py
-The Gridworld implementation.
-* featureExtractors.py
-Classes for extracting features on (state,action) pairs. Used for the approximate Q-learning agent (in qlearningAgents.py).
+* mdp.py : Defines methods on general MDPs.
+* learningAgents.py : Defines the base classes ValueEstimationAgent and QLearningAgent, which your agents will extend.
+* util.py : Utilities, including util.Counter, which is particularly useful for Q-learners.
+* gridworld.py : The Gridworld implementation.
+* featureExtractors.py : Classes for extracting features on (state,action) pairs. Used for the approximate Q-learning agent (in qlearningAgents.py).
 
 To get started, run Gridworld in manual control mode, which uses the arrow keys:
 ```bash
@@ -53,6 +46,7 @@ On the default BookGrid, running value iteration for 5 iterations should give yo
 ```bash
 python gridworld.py -a value -i 5
 ```
+
 ![Hint img1](imgs/task1_img.JPG)
 
 ## Task2: Q-Learning
@@ -63,6 +57,7 @@ With the Q-learning update in place, you can watch your Q-learner learn under ma
 python gridworld.py -a q -k 5 -m
 ```
 If you manually steer Pacman north and then east along the optimal path for four episodes, you should see the following Q-values:
+
 ![Hint img2](imgs/task2_img.JPG)
 
 ## Task3: Q-Learning for Pacman
