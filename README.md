@@ -11,20 +11,23 @@ Python 2.7
 
 ## Getting Started
 
-* Files you'll edit:
-```bash
-valueIterationAgents.py		A value iteration agent for solving known MDPs.
-qlearningAgents.py			Q-learning agents for Gridworld and Pacman.
-```
+Files you'll edit:
+* valueIterationAgents.py
+A value iteration agent for solving known MDPs.
+* qlearningAgents.py
+Q-learning agents for Gridworld and Pacman.
 
-* Files you should read but NOT edit:
-```bash
-mdp.py						Defines methods on general MDPs.
-learningAgents.py			Defines the base classes ValueEstimationAgent and QLearningAgent, which your agents will extend.
-util.py						Utilities, including util.Counter, which is particularly useful for Q-learners.
-gridworld.py				The Gridworld implementation.
-featureExtractors.py		Classes for extracting features on (state,action) pairs. Used for the approximate Q-learning agent (in qlearningAgents.py).
-```
+Files you should read but NOT edit:
+* mdp.py
+Defines methods on general MDPs.
+* learningAgents.py
+Defines the base classes ValueEstimationAgent and QLearningAgent, which your agents will extend.
+* util.py
+Utilities, including util.Counter, which is particularly useful for Q-learners.
+* gridworld.py
+The Gridworld implementation.
+* featureExtractors.py
+Classes for extracting features on (state,action) pairs. Used for the approximate Q-learning agent (in qlearningAgents.py).
 
 To get started, run Gridworld in manual control mode, which uses the arrow keys:
 ```bash
@@ -43,14 +46,14 @@ python gridworld.py -g MazeGrid
 ```
 You should see the random agent bounce around the grid until it happens upon an exit. Not the finest hour for an AI agent.
 
-##Task1: MDP and Value Iteration
+## Task1: MDP and Value Iteration
 Write a value iteration agent in ValueIterationAgent, which has been partially specified for you in valueIterationAgents.py. 
 
 On the default BookGrid, running value iteration for 5 iterations should give you this output:
 ```bash
 python gridworld.py -a value -i 5
 ```
-![Hint img1](imgs/task1_img.jpg)
+![Hint img1](imgs/task1_img.JPG)
 
 ## Task2: Q-Learning
 write a Q-learning agent. A stub of a Q-learner is specified in QLearningAgent in qlearningAgents.py.(must implement the update, computeValueFromQValues, getQValue, and computeActionFromQValues methods.)
@@ -60,7 +63,7 @@ With the Q-learning update in place, you can watch your Q-learner learn under ma
 python gridworld.py -a q -k 5 -m
 ```
 If you manually steer Pacman north and then east along the optimal path for four episodes, you should see the following Q-values:
-![Hint img2](imgs/task2_img.jpg)
+![Hint img2](imgs/task2_img.JPG)
 
 ## Task3: Q-Learning for Pacman
 Test games are shown in the GUI by default. Without any code changes you should be able to run Q-learning Pacman for very tiny grids as follows:
