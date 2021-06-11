@@ -2,57 +2,73 @@
 See Midterm and Final Project:
 https://sites.google.com/hanyang.ac.kr/2021ai
 
+## Environment / Dependencies
+```bash
+Windows 10
+Anaconda 4.10.1
+Python 2.7
+```
 
 ## Getting Started
-The projects for this class assume you use Python "2.7". You may use Linux, Windows 10, or Mac OS.
 
-If you run Windows 10, install Ubuntu by following this:
-
-https://ubuntu.com/tutorials/tutorial-ubuntu-on-windows#1-overview
-
-You need to set up the sudo password.
-
-```console
-$sudo apt update
-$sudo apt install python2.7 python-pip
-$sudo apt install unzip zip vim git
+* Files you'll edit:
+```bash
+valueIterationAgents.py		A value iteration agent for solving known MDPs.
+qlearningAgents.py			Q-learning agents for Gridworld and Pacman.
 ```
 
-If asked, please enter sudo password.
-Install and run Xming
-
-https://sourceforge.net/projects/xming/files/latest/download 
-
-Set the display forwarding
-
-```console
-$export DISPLAY=localhost:0.0
+* Files you should read but NOT edit:
+```bash
+mdp.py						Defines methods on general MDPs.
+learningAgents.py			Defines the base classes ValueEstimationAgent and QLearningAgent, which your agents will extend.
+util.py						Utilities, including util.Counter, which is particularly useful for Q-learners.
+gridworld.py				The Gridworld implementation.
+featureExtractors.py		Classes for extracting features on (state,action) pairs. Used for the approximate Q-learning agent (in qlearningAgents.py).
 ```
 
-clone project files
-Download project files through git clone (try to learn git:  https://rogerdudler.github.io/git-guide/index.ko.html)
-
-Throughout project, try to commit your changes by git commit -m "change message" so we can track your changes (at least for each task)
-
-```console
-$git clone https://github.com/leeymcj/pacman-ai.git
-$cd pacman-ai
+To get started, run Gridworld in manual control mode, which uses the arrow keys:
+```bash
+python gridworld.py -m
 ```
-You should be able to play a game of Pacman by typing the following at the command line (note the left key is a right key is d) : 
+You will see the two-exit layout from class. The blue dot is the agent. Note that when you press up, the agent only actually moves north 80% of the time. Such is the life of a Gridworld agent!
 
-```console
-$python2.7 pacman.py
+You can control many aspects of the simulation. A full list of options is available by running:
+```bash
+python gridworld.py -h
 ```
 
-We will develop an intelligent agent (Alpha-Pacman) that plays Pacman for us.
-
-## Submission
-
-zip entire project files including git log
-```console
-$zip <MyName>.zip -r * .git
+The default agent moves randomly
+```bash
+python gridworld.py -g MazeGrid
 ```
-then, upload <MyName>.zip to LMS homework submission.
+You should see the random agent bounce around the grid until it happens upon an exit. Not the finest hour for an AI agent.
 
+##Task1: MDP and Value Iteration
+Write a value iteration agent in ValueIterationAgent, which has been partially specified for you in valueIterationAgents.py. 
 
+On the default BookGrid, running value iteration for 5 iterations should give you this output:
+```bash
+python gridworld.py -a value -i 5
+```
+![Hint img1](imgs/task1_img.jpg)
 
+## Task2: Q-Learning
+write a Q-learning agent. A stub of a Q-learner is specified in QLearningAgent in qlearningAgents.py.(must implement the update, computeValueFromQValues, getQValue, and computeActionFromQValues methods.)
+
+With the Q-learning update in place, you can watch your Q-learner learn under manual control, using the keyboard:
+```bash
+python gridworld.py -a q -k 5 -m
+```
+If you manually steer Pacman north and then east along the optimal path for four episodes, you should see the following Q-values:
+![Hint img2](imgs/task2_img.jpg)
+
+## Task3: Q-Learning for Pacman
+Test games are shown in the GUI by default. Without any code changes you should be able to run Q-learning Pacman for very tiny grids as follows:
+```bash
+python2.7 pacman.py -p PacmanQAgent -x 2000 -n 2010 -l smallGrid
+```	
+While a total of 2010 games will be played, the first 2000 games will not be displayed because of the option -x 2000, which designates the first 2000 games for training (no output). Thus, you will only see Pacman play the last 10 of these games. The number of training games is also passed to your agent as the option numTraining.
+```bash
+python2.7 pacman.py -p PacmanQAgent -n 10 -l smallGrid -a numTraining=10
+```
+During training, you will see output every 100 games with statistics about how Pacman is faring. Epsilon is positive during training, so Pacman will play poorly even after having learned a good policy: this is because he occasionally makes a random exploratory move into a ghost. As a benchmark, it should take between 1,000 and 1400 games before Pacman's rewards for a 100 episode segment becomes positive, reflecting that he's started winning more than losing. By the end of training, it should remain positive and be fairly high (between 100 and 350).
